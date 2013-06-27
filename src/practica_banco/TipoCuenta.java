@@ -4,10 +4,15 @@
  */
 package practica_banco;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Yuri
  */
 public class TipoCuenta {
-    
+    private String descripcion;
+    private long idTipocuenta;
+    static long totalTipoCuenta=1;
+    private ArrayList<CuentaBancaria> listaCuentaBancaria =new ArrayList<CuentaBancaria>();
 }

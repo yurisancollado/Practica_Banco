@@ -8,6 +8,9 @@ package practica_banco;
  *
  * @author Yuri
  */
-public class TipoOperacion {
-    
+public class TipoOperacion {    
+    private String descripcion;
+    private long idTipoOperacion;
+    static long totalTipoOperacion=1;
+    private long montoOperacion;
 }
