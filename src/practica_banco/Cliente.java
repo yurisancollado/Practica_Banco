@@ -16,4 +16,15 @@ public class Cliente {
     private String nombreCliente;
     private String cedulaCliente;
     private ArrayList<CuentaBancaria> listaCuentaBancaria = new ArrayList<CuentaBancaria>();
+
+    void createCliente(String nombre, String cedula) {
+        nombreCliente = nombre;
+        cedulaCliente = cedula;
+        idCliente = totalcliente;
+        totalcliente++;
+    }
+
+    void imprimirDatosCliente() {
+        System.out.println("#" + idCliente + " C.I. " + cedulaCliente + "   " + nombreCliente);
+    }
 }
