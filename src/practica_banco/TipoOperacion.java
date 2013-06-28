@@ -14,6 +14,38 @@ public class TipoOperacion {
     static long totalTipoOperacion=1;
     private long montoOperacion;
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public long getIdTipoOperacion() {
+        return idTipoOperacion;
+    }
+
+    public void setIdTipoOperacion(long idTipoOperacion) {
+        this.idTipoOperacion = idTipoOperacion;
+    }
+
+    public static long getTotalTipoOperacion() {
+        return totalTipoOperacion;
+    }
+
+    public static void setTotalTipoOperacion(long totalTipoOperacion) {
+        TipoOperacion.totalTipoOperacion = totalTipoOperacion;
+    }
+
+    public long getMontoOperacion() {
+        return montoOperacion;
+    }
+
+    public void setMontoOperacion(long montoOperacion) {
+        this.montoOperacion = montoOperacion;
+    }
+
     public void addTipoOperacion(String desc,long monto){
         descripcion = desc;
         montoOperacion=monto;

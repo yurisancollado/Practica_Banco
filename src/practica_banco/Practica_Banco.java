@@ -132,10 +132,64 @@ public class Practica_Banco {
         }
     }
 
-    private static void menuRealizarOperacionBancaria() {
-        throw new UnsupportedOperationException("Not yet implemented");
+   public static void menuRealizarOperacionBancaria() throws IOException {
+        InputStreamReader leerCadena = new InputStreamReader(System.in);
+        BufferedReader buffer = new BufferedReader(leerCadena);
+        String numeroCuenta, tipoOperacion;
+        System.out.println("----------- Realizar Operacion Bancaria -------------------");
+        System.out.print("Ingrese el numero de Cuenta: ");
+        numeroCuenta = buffer.readLine();
+        System.out.println("Tipo de operacion: ");
+        for (int i = 0; i < listaTipoOperacion.size(); i++) {
+            listaTipoOperacion.get(i).imprimirDatosTipoOperacion();
+        }
+        System.out.print("Selecciona un tipo de operacion  ");
+        tipoOperacion = buffer.readLine();
+        System.out.println("");
+        guardarNuevaOperacionBancaria(numeroCuenta, tipoOperacion);
     }
 
+    public static void guardarNuevaOperacionBancaria(String numeroCuenta, String tipoOperacion) {
+        int bol = 0;
+        int posicionCliente = 0;
+        long monto;
+        for (int i = 0; i < listaCliente.size(); i++) {
+            if (listaCliente.get(i).buscarCuentaBancaria(numeroCuenta)) {
+                posicionCliente = i;
+                bol=1;
+            }
+        }
+        if (bol == 0) {
+            System.out.println("No se encuentra el numero de Cuenta.");
+        } else {
+            for (int i = 0; i < listaTipoOperacion.size(); i++) {
+               if(listaTipoOperacion.get(i).getIdTipoOperacion()==Long.parseLong(tipoOperacion)){
+                   monto=listaTipoOperacion.get(i).getMontoOperacion();
+                   if("Retiro".equals(listaTipoOperacion.get(i).getDescripcion())){
+                        if(listaCliente.get(posicionCliente).realizarRetiro(numeroCuenta, monto,listaTipoOperacion.get(i))){
+                            System.out.println("Operacion procesada exitosamente. ");    
+                        }else{
+                            System.out.println("La operacion no puedo ser procesada.");
+                        }
+                   }
+                   if("Deposito".equals(listaTipoOperacion.get(i).getDescripcion())){
+                       if(listaCliente.get(posicionCliente).realizarDeposito(numeroCuenta, monto,listaTipoOperacion.get(i))){
+                            System.out.println("Operacion procesada exitosamente. ");    
+                        }else{
+                            System.out.println("La operacion no puedo ser procesada.");
+                        }
+                   }
+                   if("Retiro por Cajero".equals(listaTipoOperacion.get(i).getDescripcion())){
+                        if(listaCliente.get(posicionCliente).realizarRetiro(numeroCuenta, monto,listaTipoOperacion.get(i))){
+                            System.out.println("Operacion procesada exitosamente. ");    
+                        }else{
+                            System.out.println("La operacion no puedo ser procesada.");
+                        }
+                   }
+               }                
+            }
+        }
+    }
      public static void menuAbrirCuentaBancaria() throws IOException {
         InputStreamReader leerCadena = new InputStreamReader(System.in);
         BufferedReader buffer = new BufferedReader(leerCadena);
@@ -227,8 +281,23 @@ public class Practica_Banco {
         }
     }
 
-    private static void reporteConsultarCuentaBancaria() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    private static void reporteConsultarCuentaBancaria() throws IOException {
+        InputStreamReader leerCadena = new InputStreamReader(System.in);
+        BufferedReader buffer = new BufferedReader(leerCadena);
+        System.out.println("----------- Consultar Cuenta Bancaria -------------------");
+        System.out.print("Ingrese numero de cuenta Bancaria: ");
+        String numeroCuenta = buffer.readLine();
+        int bol=0;
+        for (int i = 0; i < listaCliente.size(); i++) {
+            if(listaCliente.get(i).buscarCuentaBancaria(numeroCuenta)){
+                  bol=1;  
+                  System.out.println("Cliente: "+listaCliente.get(i).getNombreCliente() );
+                  listaCliente.get(i).imprimirCuentaBancaria(numeroCuenta);
+            }            
+        }
+        if(bol==0){
+            System.out.println("No se encuentra la Cuenta Bancaria");
+        }
     }
 
     private static void reporteListadoCliente() {
@@ -240,7 +309,13 @@ public class Practica_Banco {
     }
 
     private static void reporteListadoCuentaPorTipo() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        System.out.println("----------- Listado Tipo Cuenta -------------------");
+         for (int i = 0; i < listaTipoCuentas.size(); i++) {
+             System.out.println("Tipo: "+listaTipoCuentas.get(i).getDescripcion());
+             System.out.println("Cuentas: ");
+             listaTipoCuentas.get(i).imprimirCuentasBancarias();
+            
+        }
     }
 
     public static void reporteListadoTipoOperacion() {

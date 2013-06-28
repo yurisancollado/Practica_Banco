@@ -63,6 +63,10 @@ public class TipoCuenta {
         idTipocuenta=totalTipoCuenta;
         totalTipoCuenta++;
     }
-
+ public void imprimirCuentasBancarias(){
+        for (int i = 0; i < listaCuentaBancaria.size(); i++) {
+            System.out.println("#"+listaCuentaBancaria.get(i).getNumeroCuenta()+"   $"+listaCuentaBancaria.get(i).getSaldo());            
+        }
+    }
     
 }

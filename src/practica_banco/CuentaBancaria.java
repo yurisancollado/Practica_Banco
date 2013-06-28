@@ -86,5 +86,33 @@ public class CuentaBancaria {
         totalCuentaBancaria++;
         tipoCuenta = tipo;
     }
+     public void imprimirInformacion() {
+        System.out.println("Numero de Cuenta: "+numeroCuenta);
+        System.out.println("Saldo: "+saldo);
+        System.out.println("Operaciones Bancaria");
+        for (int i = 0; i < listaOperacionBancaria.size(); i++) {
+            listaOperacionBancaria.get(i).imprimirOperacion();            
+        }
+    }
+    public boolean retirarDinero(long sald,TipoOperacion tipooperacion) {
+        if (saldo >= sald) {
+            saldo -= sald;
+            OperacionBancaria operacion=new OperacionBancaria();
+            operacion.createOperationBancaria(numeroCuenta, sald, tipooperacion);
+            listaOperacionBancaria.add(operacion);
+            System.out.println("Saldo Actual:  $"+saldo);
+            return true;
+        }else
+            System.out.println("Saldo Insuficiente.");
+        return false;
+    }
+    public boolean depositoDinero(long sald,TipoOperacion tipooperacion){
+            saldo += sald;
+            OperacionBancaria operacion=new OperacionBancaria();
+            operacion.createOperationBancaria(numeroCuenta, sald, tipooperacion);
+            listaOperacionBancaria.add(operacion);
+            System.out.println("Saldo Actual:  $"+saldo);
+            return true;
+    }
 
 }

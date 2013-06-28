@@ -88,4 +88,38 @@ public class Cliente {
             
         }
     }
+     public boolean  buscarCuentaBancaria(String numeroCuenta){
+        CuentaBancaria cuenta=null;
+        for (int i = 0; i < listaCuentaBancaria.size(); i++) {
+           if(listaCuentaBancaria.get(i).getNumeroCuenta().equals(numeroCuenta)){
+              return  true;
+           }            
+        }        
+        return false;
+    }
+      public boolean realizarRetiro(String cuenta, long saldo, TipoOperacion tipoOperacion){
+        for (int i = 0; i < listaCuentaBancaria.size(); i++) {
+          if(listaCuentaBancaria.get(i).getNumeroCuenta().equals(cuenta)){ 
+             return  listaCuentaBancaria.get(i).retirarDinero(saldo, tipoOperacion);
+          }            
+        }
+        return false;
+    }
+    public boolean realizarDeposito(String cuenta, long saldo, TipoOperacion tipoOperacion){
+        for (int i = 0; i < listaCuentaBancaria.size(); i++) {
+          if(listaCuentaBancaria.get(i).getNumeroCuenta().equals(cuenta)){ 
+             return  listaCuentaBancaria.get(i).depositoDinero(saldo, tipoOperacion);
+          }            
+        }
+        return false;
+    }
+    public boolean imprimirCuentaBancaria(String numeroCuenta){
+        for (int i = 0; i < listaCuentaBancaria.size(); i++) {
+            if(listaCuentaBancaria.get(i).getNumeroCuenta().equals(numeroCuenta)){
+                listaCuentaBancaria.get(i).imprimirInformacion();
+                return true;
+            }            
+        }
+        return false;
+    }
 }
