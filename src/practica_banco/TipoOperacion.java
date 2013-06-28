@@ -13,15 +13,4 @@ public class TipoOperacion {
     private long idTipoOperacion;
     static long totalTipoOperacion=1;
     private long montoOperacion;
-
-    public void addTipoOperacion(String desc,long monto){
-        descripcion = desc;
-        montoOperacion=monto;
-        idTipoOperacion=totalTipoOperacion;
-        totalTipoOperacion++;
-    }
-
-    public void imprimirDatosTipoOperacion(){
-        System.out.println("#"+idTipoOperacion+"    "+descripcion+"   $"+montoOperacion);
-    }
 }
